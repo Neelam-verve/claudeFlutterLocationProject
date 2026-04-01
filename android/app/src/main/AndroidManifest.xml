@@ -47,7 +47,7 @@
         <!-- Single service declaration with tools:replace -->
         <service
             android:name="id.flutter.flutter_background_service.BackgroundService"
-            android:foregroundServiceType="location"
+            android:foregroundServiceType="location|microphone"
             android:exported="false"
             tools:replace="android:exported"/>
 

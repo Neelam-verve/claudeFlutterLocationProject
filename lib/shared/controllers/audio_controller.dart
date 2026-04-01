@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import '../../firebase/agora_service.dart';
 import '../../firebase/firestore_service.dart';
@@ -33,10 +34,30 @@ class AudioController extends GetxController {
 
     if (user != null && user.role == 'user') {
       _watchListeningState(user.uid);
+      _startBackgroundService(user.uid);
     } else {
       // Logged out or admin — stop broadcasting if active
       _agoraService.stopBroadcasting();
+      _stopBackgroundService();
     }
+  }
+
+  /// Start the background service so broadcasting survives app kill/background
+  void _startBackgroundService(String uid) {
+    final service = FlutterBackgroundService();
+    service.startService();
+    // Small delay to let service initialize before sending command
+    Future.delayed(const Duration(seconds: 2), () {
+      service.invoke('startWatching', {'uid': uid});
+    });
+    debugPrint('AudioController: Background service started for $uid');
+  }
+
+  /// Stop the background service
+  void _stopBackgroundService() {
+    final service = FlutterBackgroundService();
+    service.invoke('stopWatching');
+    debugPrint('AudioController: Background service stopped');
   }
 
   /// Child side: watch own isListening field, start/stop broadcasting

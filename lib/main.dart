@@ -5,6 +5,7 @@ import 'firebase/agora_service.dart';
 import 'firebase/auth_service.dart';
 import 'firebase/firestore_service.dart';
 import 'firebase/location_firebase_service.dart';
+import 'services/background_audio_service.dart';
 import 'shared/controllers/auth_controller.dart';
 import 'shared/controllers/audio_controller.dart';
 import 'shared/controllers/location_controller.dart';
@@ -23,6 +24,7 @@ void main() async {
     }
   }
 
+  await initBackgroundAudioService();
   _registerServices();
   runApp(const MyApp());
 }
