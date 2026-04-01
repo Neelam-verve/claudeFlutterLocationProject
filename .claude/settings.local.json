@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"/Users/verve-vsl91/Projects/Nilam Projects/locationapp/lib/firebase\")",
+      "Bash(mkdir -p \"/Users/verve-vsl91/Projects/Nilam Projects/locationapp/lib/admin/controllers\")",
+      "Bash(mkdir -p \"/Users/verve-vsl91/Projects/Nilam Projects/locationapp/lib/admin/screens\")",
+      "Bash(mkdir -p \"/Users/verve-vsl91/Projects/Nilam Projects/locationapp/lib/user/controllers\")",
+      "Bash(mkdir -p \"/Users/verve-vsl91/Projects/Nilam Projects/locationapp/lib/user/screens\")"
+    ]
+  }
+}
